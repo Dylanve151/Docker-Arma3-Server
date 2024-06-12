@@ -11,7 +11,7 @@ for modID in $SERVER_MODS; do
     while [ $DOWNLOADRETRY -ge $n ]; do
         if [ ! -d "${A3ModsPath}/steamapps/workshop/content/${A3gameID}/${modID}" ]; then
             echo "Starting download ${modID}..."
-            ./steamcmd.sh +login $steamLogin +workshop_download_item $A3gameID $modID validate +quit | grep "Downloading item"
+            ./steamcmd.sh +login $steamLogin +workshop_download_item $A3gameID $modID validate +quit
         else
             echo "${modID} Downloaded."
             break
@@ -25,7 +25,7 @@ for modID in $OPTIONAL_MODS; do
     while [ $DOWNLOADRETRY -ge $n ]; do
         if [ ! -d "${A3ModsPath}/steamapps/workshop/content/${A3gameID}/${modID}" ]; then
             echo "Starting download ${modID}..."
-            ./steamcmd.sh +login $steamLogin +workshop_download_item $A3gameID $modID validate +quit | grep "Downloading item"
+            ./steamcmd.sh +login $steamLogin +workshop_download_item $A3gameID $modID validate +quit
         else
             echo "${modID} Downloaded."
             break
@@ -39,7 +39,7 @@ for modID in $REQUIRED_MODS; do
     while [ $DOWNLOADRETRY -ge $n ]; do
         if [ ! -d "${A3ModsPath}/steamapps/workshop/content/${A3gameID}/${modID}" ]; then
             echo "Starting download ${modID}..."
-            ./steamcmd.sh +login $steamLogin +workshop_download_item $A3gameID $modID validate +quit | grep "Downloading item"
+            ./steamcmd.sh +login $steamLogin +workshop_download_item $A3gameID $modID validate +quit
         else
             echo "${modID} Downloaded."
             break
