@@ -30,13 +30,11 @@ for modID in $SERVER_MODS; do
     done
 done
 
+
+cp "${SteamPath}/steamapps/common/Arma 3 Server/keys/a3.bikey" "${SteamPath}/steamapps/common/Arma 3 Server/keys/a3.bikey.bac"
+find "${SteamPath}/steamapps/common/Arma 3 Server/keys/" -type f -name '*.bikey' ! -name 'a3.bikey' -delete
+
 for modID in $OPTIONAL_MODS; do
-    if [ -d "${SteamPath}/steamapps/common/Arma 3 Server/@${modID}" ]; then
-        ln -s "${SteamPath}/steamapps/common/Arma 3 Server/@${modID}" "${SteamPath}/steamapps/workshop/content/${A3gameID}/${modID}"
-        nomove=1
-    else
-        nomove=0
-    fi
     n=0
     while [ $DOWNLOADRETRY -ge $n ]; do
         if [ ! -d "${SteamPath}/steamapps/workshop/content/${A3gameID}/${modID}" ]; then
@@ -45,9 +43,7 @@ for modID in $OPTIONAL_MODS; do
         else
             echo "${modID} Downloaded."
             echo "Moving ${modID}."
-            if [ 1 -gt $nomove ]; then
-                mv "${SteamPath}/steamapps/workshop/content/${A3gameID}/${modID}" "${SteamPath}/steamapps/common/Arma 3 Server/${modID}"
-            fi
+            find "${SteamPath}/steamapps/workshop/content/${A3gameID}/${modID}" -name *.bikey -exec cp {} "${SteamPath}/steamapps/common/Arma 3 Server/keys" \;
             break
         fi
         n=$((n+1))
