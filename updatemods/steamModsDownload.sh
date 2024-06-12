@@ -3,7 +3,6 @@
 export IFS=";"
 A3gameID=107410
 SteamPath="/home/steam/Steam"
-A3ServerPath="/home/steam/Steam/steamapps/common/Arma 3 Server/"
 
 cd /home/steam/steamcmd
 
