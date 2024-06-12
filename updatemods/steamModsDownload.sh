@@ -2,18 +2,24 @@
 
 export IFS=";"
 A3gameID=107410
-A3ModsPath="/home/steam/Steam"
+SteamPath="/home/steam/Steam"
+A3ServerPath="/home/steam/Steam/steamapps/common/Arma 3 Server/"
 
 cd /home/steam/steamcmd
 
 for modID in $SERVER_MODS; do
+    if [ -d "${SteamPath}/steamapps/common/Arma 3 Server/@${modID}" ]; then
+        ln -s "${SteamPath}/steamapps/common/Arma 3 Server/${modID}" "${SteamPath}/steamapps/workshop/content/${A3gameID}/${modID}"
+    fi
     n=0
     while [ $DOWNLOADRETRY -ge $n ]; do
-        if [ ! -d "${A3ModsPath}/steamapps/workshop/content/${A3gameID}/${modID}" ]; then
+        if [ ! -d "${SteamPath}/steamapps/workshop/content/${A3gameID}/${modID}" ]; then
             echo "Starting download ${modID}..."
             ./steamcmd.sh +login $STEAMLOGIN +workshop_download_item $A3gameID $modID validate +quit
         else
             echo "${modID} Downloaded."
+            echo "Moving ${modID}."
+            mv "${SteamPath}/steamapps/workshop/content/${A3gameID}/${modID}" "${SteamPath}/steamapps/common/Arma 3 Server/${modID}"
             break
         fi
         n=$((n+1))
@@ -21,13 +27,18 @@ for modID in $SERVER_MODS; do
 done
 
 for modID in $OPTIONAL_MODS; do
+    if [ -d "${SteamPath}/steamapps/common/Arma 3 Server/@${modID}" ]; then
+        ln -s "${SteamPath}/steamapps/common/Arma 3 Server/@${modID}" "${SteamPath}/steamapps/workshop/content/${A3gameID}/${modID}"
+    fi
     n=0
     while [ $DOWNLOADRETRY -ge $n ]; do
-        if [ ! -d "${A3ModsPath}/steamapps/workshop/content/${A3gameID}/${modID}" ]; then
+        if [ ! -d "${SteamPath}/steamapps/workshop/content/${A3gameID}/${modID}" ]; then
             echo "Starting download ${modID}..."
             ./steamcmd.sh +login $STEAMLOGIN +workshop_download_item $A3gameID $modID validate +quit
         else
             echo "${modID} Downloaded."
+            echo "Moving ${modID}."
+            mv "${SteamPath}/steamapps/workshop/content/${A3gameID}/${modID}" "${SteamPath}/steamapps/common/Arma 3 Server/@${modID}"
             break
         fi
         n=$((n+1))
@@ -35,13 +46,18 @@ for modID in $OPTIONAL_MODS; do
 done
 
 for modID in $REQUIRED_MODS; do
+    if [ -d "${SteamPath}/steamapps/common/Arma 3 Server/@${modID}" ]; then
+        ln -s "${SteamPath}/steamapps/common/Arma 3 Server/@${modID}" "${SteamPath}/steamapps/workshop/content/${A3gameID}/${modID}"
+    fi
     n=0
     while [ $DOWNLOADRETRY -ge $n ]; do
-        if [ ! -d "${A3ModsPath}/steamapps/workshop/content/${A3gameID}/${modID}" ]; then
+        if [ ! -d "${SteamPath}/steamapps/workshop/content/${A3gameID}/${modID}" ]; then
             echo "Starting download ${modID}..."
             ./steamcmd.sh +login $STEAMLOGIN +workshop_download_item $A3gameID $modID validate +quit
         else
             echo "${modID} Downloaded."
+            echo "Moving ${modID}."
+            mv "${SteamPath}/steamapps/workshop/content/${A3gameID}/${modID}" "${SteamPath}/steamapps/common/Arma 3 Server/@${modID}"
             break
         fi
         n=$((n+1))
