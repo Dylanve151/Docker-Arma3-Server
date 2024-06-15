@@ -2,7 +2,7 @@ services:
   updategame:
     image: cm2network/steamcmd
     volumes:
-      - /docker/steamcmd/:/home/steam/Steam/
+      - ${PWD}/steamcmd/:/home/steam/Steam/
     restart: no
     command: ./steamcmd.sh +login $STEAMLOGIN +app_update 233780 validate +quit
     stdin_open: true
@@ -13,7 +13,7 @@ services:
   updatemods:
     build: ./updatemods
     volumes:
-      - /docker/steamcmd/:/home/steam/Steam/
+      - ${PWD}/steamcmd/:/home/steam/Steam/
     restart: no
     command: ./steamModsDownload.sh
     stdin_open: true
@@ -33,16 +33,12 @@ services:
       - "2344-2345:2344-2345/tcp"
       - "3000:3000/tcp"
     volumes:
-      - /docker/steamcmd/steamapps/common/Arma 3 Server/:/arma3/
-      - /docker/arma3profiles/:/root/.local/share/Arma 3 - Other Profiles/
-      - /docker/arma3/servers.json:/app/servers.json
+      - ${PWD}/steamcmd/steamapps/common/Arma 3 Server/:/arma3/
+      - ${PWD}/arma3profiles/:/root/.local/share/Arma 3 - Other Profiles/
+      - ${PWD}/arma3/servers.json:/app/servers.json
     environment:
       - GAME_TYPE
       - GAME_PATH=/arma3
       - SERVER_ADMINS
       - SERVER_MODS
 
-volumes:
-  steamcmd_login_volume:
-  arma3server:
-  a3_profiles:
