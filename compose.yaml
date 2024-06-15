@@ -28,10 +28,10 @@ services:
   webadmin:
     image: dahlgren/arma-server-web-admin
     ports:
-      - "2302-2306:2302-2306/udp"
-      - "2344:2344/udp"
-      - "2344-2345:2344-2345/tcp"
-      - "3000:3000/tcp"
+      - 2302-2306:2302-2306/udp
+      - 2344:2344/udp
+      - 2344-2345:2344-2345/tcp
+      - 3000:3000/tcp
     volumes:
       - $PWD/steamcmd/steamapps/common/Arma 3 Server/:/arma3/
       - $PWD/arma3profiles/:/root/.local/share/Arma 3 - Other Profiles/
@@ -41,4 +41,3 @@ services:
       - GAME_PATH=/arma3
       - SERVER_ADMINS
       - SERVER_MODS
-
