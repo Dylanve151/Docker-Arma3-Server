@@ -47,7 +47,7 @@ for modID in $OPTIONAL_MODS; do
             cd "${SteamPath}/steamapps/workshop/content/${A3gameID}/${modID}"
             find . -depth -exec rename 's/(.*)\/([^\/]*)/$1\/\L$2/' {} \;
             echo "Moving ${modID}."
-            find "${SteamPath}/steamapps/workshop/content/${A3gameID}/${modID}" -name *.bikey -exec cp {} "${SteamPath}/steamapps/common/Arma 3 Server/keys" \;
+            find "${SteamPath}/steamapps/workshop/content/${A3gameID}/${modID}/" -name *.bikey -exec cp {} "${SteamPath}/steamapps/common/Arma 3 Server/keys/" ';'
             break
         fi
         n=$((n+1))
@@ -69,7 +69,7 @@ for modID in $REQUIRED_MODS; do
             cd "${SteamPath}/steamapps/workshop/content/${A3gameID}/${modID}"
             find . -depth -exec rename 's/(.*)\/([^\/]*)/$1\/\L$2/' {} \;
             echo "Moving ${modID}."
-            find "${SteamPath}/steamapps/workshop/content/${A3gameID}/${modID}" -name *.bikey -exec cp {} "${SteamPath}/steamapps/common/Arma 3 Server/keys" \;
+            find "${SteamPath}/steamapps/workshop/content/${A3gameID}/${modID}/" -name *.bikey -exec cp {} "${SteamPath}/steamapps/common/Arma 3 Server/keys/" ';'
             if [ ! -d "${SteamPath}/steamapps/common/Arma 3 Server/@${modID}" ]; then
                 mv "${SteamPath}/steamapps/workshop/content/${A3gameID}/${modID}" "${SteamPath}/steamapps/common/Arma 3 Server/@${modID}"
             fi
