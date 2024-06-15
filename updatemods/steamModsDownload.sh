@@ -30,7 +30,7 @@ for modID in $SERVER_MODS; do
 done
 
 
-cp "${SteamPath}/steamapps/common/Arma 3 Server/keys/a3.bikey" "${SteamPath}/steamapps/common/Arma 3 Server/backupkey/a3.bikey"
+cp "${SteamPath}/steamapps/common/Arma 3 Server/keys/a3.bikey" "${SteamPath}/steamapps/common/Arma 3 Server/a3.bikey.bac"
 find "${SteamPath}/steamapps/common/Arma 3 Server/keys/" -type f -name '*.bikey' ! -name 'a3.bikey' -delete
 
 cd /home/steam/steamcmd
