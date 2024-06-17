@@ -7,6 +7,11 @@ once updategame container is done restart the webadmin container.
  
 Might need to manually build the updatemods image.
 
+### Sources
+
+For webadmin: https://github.com/Dahlgren/arma-server-web-admin
+For steamcmd: https://hub.docker.com/r/cm2network/steamcmd
+
 
 ### ISSUES
 
